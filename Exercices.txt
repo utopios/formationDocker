@@ -1,0 +1,5 @@
+1- Démarrer un conteneur à partir d'une image ubuntu et mettre à jour l'ubuntu sur le container.
+2- Ecrire un fichier dans le container
+3- Créer un conteneur avec un serveur web
+4- Convertir le conteneur en image
+5- Créer un conteneur à partir de la nouvelle image

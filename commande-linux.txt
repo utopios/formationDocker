@@ -1,0 +1,4 @@
+1- check if docker is running on linux => sudo status docker
+2- get docker informations => docker info
+3- update linux distrubtion => apt-get update
+4- delete all not used containers and images => docker system prune -a
