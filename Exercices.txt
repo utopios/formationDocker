@@ -1,5 +1,55 @@
 1- Démarrer un conteneur à partir d'une image ubuntu et mettre à jour l'ubuntu sur le container.
+command docker run -it --name=container_ubuntu ubuntu bash
+-> à l'interieur du container :
+    apt-get update 
+    apt-get upgrade
 2- Ecrire un fichier dans le container
+    Entrer dans le container : docker exec container_ubuntu bash
+    -> à l'interieur du container :
+    installer un editeur vim ou nano
+    apt-get install nano (ou vim)
+    nano nom du ficher
 3- Créer un conteneur avec un serveur web
+    -> Création d'un container à partir d'un debian : command docker run -it --name=container_web_server debian bash
+    -> Une fois à l'interieur du container : 
+        -Mise à jour du debian : apt-get update && apt-get upgrade
+        -Install de nodejs : apt-get install nodejs && apt-get install npm && apt-get install vim
+        -Création d'un fichier node index.js : nano index.js
+        -Installer les dépendances : node install express
+        -Démarrer le serveur node index.js        
 4- Convertir le conteneur en image
+    -> docker commmit container_web_server image_server_web
 5- Créer un conteneur à partir de la nouvelle image
+    -> command docker run -it --name=container_web_server2 image_server_web bash
+
+Rappel des options au run
+-d => container dans son propre process
+-t => envoyer un terminal tty
+-i => garder un flux 
+--name => nom du container
+
+-p => mapper des ports du container avec les ports du host
+Exemple => démarrer un container à partir de l'iamge image_server_web
+docker run -it -p 3000:80 --name=container_web_server2 image_server_web bash
+
+Exercice 6
+-Créer un container avec une base de données (mysql) => Container A
+    -> démarrer un container à partir d'une image mysql récupérée du hub docker command : docker run -d --name our_mysql -e MYSQL_ROOT_PASSWORD=root mysql
+    -> une fois le container démarré, on entre dans le container command : docker exec -it our_mysql bash
+    -> à l'interieur du container :
+        On modifie le fichier mysql.conf à l'interieur du /etc/mysql/conf.d => ajouté une ligne pour bind-address = 0.0.0.0 
+    -> pour le test, on execute mysql => mysql -u root -p , ensuite il demande le mot de passe : "root"
+    -> quelque requetes sql :
+        CREATE DATABASE test => création database test
+        Use test => utilisation de la base de données test
+        CREATE TABLE testTable (id int(11) PRIMARY KEY AUTO_INCREMENT, test varchar(255))
+
+-Créer un container (serveur web ou autre) => Container B
+    -> Récupèrer l'adresse ip du container our_mysql avec la commande :
+        docker inspect our_mysql
+    -> On démarre un container comme client_mysql
+        docker run -it --name mysql_client -e MYSQL_ROOT_PASSWORD=root mysql bash
+    -> une fois à l'interieur du container, on essaye de se connecter au container our_mysql
+        mysql -h <adresse Ip du container our mysql> -u root -p
+    -> Execution de quelque requetes de test
+-Il faut accéder à la base de données à partir du container B
