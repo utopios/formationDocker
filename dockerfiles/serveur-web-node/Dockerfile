@@ -11,6 +11,8 @@ WORKDIR /home/web
 #--- Copier le dossier ou se trouve le dockerfile à l'interieur de la cible, on peut également utiliser ADD 
 COPY . .
 
+#--- ADD <adresse_web_zip> . => il va chercher le zip (en http par exemple ) et le dezipper dans la cible 
+
 #--- Exposer des ports
 
 EXPOSE 80
