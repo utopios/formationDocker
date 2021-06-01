@@ -57,3 +57,4 @@ Exercice 6
 
 Exercice 7
 -> Créer un container mysql avec un volume pour La persistance des bases de données
+    ->docker run -d -e MYSQL_ROOT_PASSWORD=root -p 3330:3306 -v /Users/ihab/Desktop/formations/formationDocker/data:/var/lib/mysql --name mysql_with_volume mysql
