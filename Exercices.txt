@@ -53,3 +53,7 @@ Exercice 6
         mysql -h <adresse Ip du container our mysql> -u root -p
     -> Execution de quelque requetes de test
 -Il faut accéder à la base de données à partir du container B
+
+
+Exercice 7
+-> Créer un container mysql avec un volume pour La persistance des bases de données
