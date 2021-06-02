@@ -68,3 +68,6 @@ Exercice 8
     -> Ensuite démarrer la commande docker build -t à l'interieur du dossier
 
 
+Exercice 9
+-> Créer un docker compose qui démarre des conteneurs (web et base de données)
+
