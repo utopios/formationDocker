@@ -1,0 +1,23 @@
+# cle: valeur
+# clecomplex:
+#     souscle: val1
+#     souscle2: val2
+
+#---Version à utiliser pour docker-compose, actuallement, il y a deux versions majeures, 2 => non compatible avec swarm (Orchestrateur de container de docker), 3=> Compatible avec swarm
+version: "3.7"
+services:
+    apache1:
+        #--- image serveur apache est une image créée à partir du dockerfile de l'exercice 8
+        image: image_serveur_apache
+        ports:
+            - "83:80"
+    
+    apache2:
+        image: image_serveur_apache
+        ports:
+            - "82:80"
+
+
+#--- pour démarrer les conteneurs d'un docker-compose, il faut lancer la commande docker-compose up (avec l'option -d pour démarrer les conteneurs en background)
+#--- pour arreter les conteneurs on utilise docker-compose down
+#--- les conteneurs d'un docker compose démarrent dans un sous-réseau du bridge
