@@ -12,8 +12,12 @@ services:
         image: php-zendserver
         links: 
             - db
+        ports:
+            - "90:80"
         environment: 
             DB_HOST: db
+        volumes: 
+            - ./php:/var/www/html
     db:
         image: mariadb
         ports: 

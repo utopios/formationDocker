@@ -73,4 +73,5 @@ Exercice 9
 
 -> Récupérer les informations de la table dans le container base de données à partir du serveur web
 
+-> partager un volume avec le serveur web; le volume contient le script pour afficher le contenu de la table
 
