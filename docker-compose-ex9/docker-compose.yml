@@ -1,0 +1,8 @@
+version: "3.7"
+services: 
+    web:
+        image: image_serveur_apache #--- image créée par dockerfile dans le dossier serveuwebapache
+        ports: 
+            - "8081:80" #--- <port_host:port_container>
+    db:
+        image: image_mysql #--- image créée par dockerfile dans le dossier mysql-avec-script
