@@ -5,7 +5,7 @@ LABEL version="1"
 RUN apt-get update -y && apt-get install apache2 -q -y
 
 WORKDIR /var/www/html
-
+RUN rm index.html
 COPY . .
 
 EXPOSE 80

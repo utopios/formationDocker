@@ -8,14 +8,54 @@ version: "3.7"
 services:
     apache1:
         #--- image serveur apache est une image créée à partir du dockerfile de l'exercice 8
-        image: image_serveur_apache
+        #image: image_serveur_apache
+        #--- on peut également générer un container directemen en indiquant l'emplacement du dockerfile
+        build: ./../dockerfiles/serveurwebapache/
         ports:
             - "83:80"
+        #--- on connecte le container apache1 à la fois au réseau reseau_apache_1_4 et reseau_apache_2_3 (les deux réseaux sont crées à la fin du fichier docker-composer)
+        networks: 
+            - reseau_apache_1_4
+            - reseau_apache_2_3
+        #--- on associe le container avec les containers apache2 et apache4 (container apache1 peut accéder directement au container 2 et 4, on indiquant directement la variable apache2 )
+        links:
+            - apache2
+            # - apache4:${HOST}
+        environment: 
+            ADDRESS_APACHE4 : "apache4"
+        
     
     apache2:
         image: image_serveur_apache
         ports:
             - "82:80"
+        links: 
+            - apache3
+        networks: 
+            - reseau_apache_2_3
+    
+    apache3:
+        image: image_serveur_apache
+        ports:
+            - "86:80"
+        
+        networks: 
+            - reseau_apache_2_3
+    
+    apache4:
+        image: image_serveur_apache
+        ports:
+            - "87:80"
+        networks: 
+            - reseau_apache_1_4
+        links: 
+            - apache1
+networks: 
+    reseau_apache_1_4:
+        name: reseau_apache_1_4
+    reseau_apache_2_3:
+        name: reseau_apache_2_3
+        
 
 
 #--- pour démarrer les conteneurs d'un docker-compose, il faut lancer la commande docker-compose up (avec l'option -d pour démarrer les conteneurs en background)
