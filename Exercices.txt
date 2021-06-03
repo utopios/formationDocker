@@ -71,3 +71,6 @@ Exercice 8
 Exercice 9
 -> Créer un docker compose qui démarre des conteneurs (web et base de données)
 
+-> Récupérer les informations de la table dans le container base de données à partir du serveur web
+
+

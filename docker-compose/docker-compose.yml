@@ -23,7 +23,8 @@ services:
             # - apache4:${HOST}
         environment: 
             ADDRESS_APACHE4 : "apache4"
-        
+        volumes: 
+            - ./v1:/var/home/test
     
     apache2:
         image: image_serveur_apache
