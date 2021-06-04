@@ -52,6 +52,8 @@ Exercice 6
     -> une fois à l'interieur du container, on essaye de se connecter au container our_mysql
         mysql -h <adresse Ip du container our mysql> -u root -p
     -> Execution de quelque requetes de test
+    -> use test;
+    -> select * from testTable;
 -Il faut accéder à la base de données à partir du container B
 
 
